@@ -1,3 +1,5 @@
+import { UPDATE_RATES } from "./update_rates";
+
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
