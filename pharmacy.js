@@ -18,7 +18,15 @@ export class Drug {
       this.benefit = Math.max(this.benefit + update_rate, MIN_BENEFIT);
     }
 
-    return this.benefit
+    return this.benefit;
+  }
+
+  updateExpiresInValue() {
+    if (this.name != "Magic Pill") {
+      this.expiresIn--;
+    }
+
+    return this.expiresIn;
   }
 
   getCurrentUpdateRate() {
