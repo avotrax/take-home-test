@@ -1,10 +1,24 @@
 import { UPDATE_RATES } from "./update_rates";
 
+const MAX_BENEFIT = 50;
+const MIN_BENEFIT = 0;
+
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
     this.expiresIn = expiresIn;
     this.benefit = benefit;
+  }
+
+  updateBenefitValue() {
+    const update_rate = this.getCurrentUpdateRate();
+    if (update_rate > 0) {
+      this.benefit = Math.min(this.benefit + update_rate, MAX_BENEFIT);
+    } else {
+      this.benefit = Math.max(this.benefit + update_rate, MIN_BENEFIT);
+    }
+
+    return this.benefit
   }
 
   getCurrentUpdateRate() {

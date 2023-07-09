@@ -22,4 +22,12 @@ describe("Drug", () => {
   it("should return the intermediate update rate for Fervex", () => {
     expect(new Drug("Fervex", 3, 3).getCurrentUpdateRate()).toEqual(3);
   });
+
+  // Testing that benefit is within boundaries
+  it("should always have a benefit <= 50", () => {
+    expect(new Drug("Herbal Tea", -1, 49).updateBenefitValue()).toEqual(50);
+  });
+  it("should always have a benefit >= 0", () => {
+    expect(new Drug("test", -1, 1).updateBenefitValue()).toEqual(0);
+  });
 });
