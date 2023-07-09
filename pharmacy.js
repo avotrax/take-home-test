@@ -71,15 +71,17 @@ export class Drug {
     }
 
     // Sort in case UPDATES_RATES is not declared in descending order
-    drug_update_rates.sort(function(a, b) {return b[0] - a[0]});
+    drug_update_rates.sort(function (a, b) {
+      return b[0] - a[0];
+    });
 
     // Before expiration
     if (this.expiresIn > 0) {
-      current_pair = drug_update_rates.find(elem => this.expiresIn > elem[0]);
+      current_pair = drug_update_rates.find((elem) => this.expiresIn > elem[0]);
       return current_pair[1];
     } else {
       // After expiration
-      current_pair = drug_update_rates.find(elem => elem[0] < 0);
+      current_pair = drug_update_rates.find((elem) => elem[0] < 0);
       if (current_pair != undefined) {
         return current_pair[1];
       } else {
@@ -88,13 +90,11 @@ export class Drug {
         return -this.benefit;
       }
     }
-
   }
 }
 
 /** Class representing a Pharmacy. A pharmacy is an array of drugs */
 export class Pharmacy {
-
   /** Create a pharmacy
    * @param {[Drug]} drugs - an array of Drugs
    */
@@ -112,5 +112,5 @@ export class Pharmacy {
     }
 
     return this.drugs;
-    }
+  }
 }

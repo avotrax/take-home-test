@@ -33,7 +33,7 @@ describe("Drug", () => {
   it("should always have a benefit >= 0", () => {
     expect(new Drug("test", -1, 1).updateBenefitValue()).toEqual(0);
   });
-  
+
   // Testing that expiration date is updated
   it("should decrement expiresIn attribute", () => {
     expect(new Drug("test", 42, 1).updateExpiresInValue()).toEqual(41);
@@ -41,5 +41,4 @@ describe("Drug", () => {
   it("should not decrement expiresIn attribute for Magic Pill", () => {
     expect(new Drug("Magic Pill", 42, 1).updateExpiresInValue()).toEqual(42);
   });
-  
 });
