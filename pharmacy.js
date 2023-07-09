@@ -6,6 +6,37 @@ export class Drug {
     this.expiresIn = expiresIn;
     this.benefit = benefit;
   }
+
+  getCurrentUpdateRate() {
+    var drug_update_rates = [];
+    var current_pair= [];
+
+    if (this.name in UPDATE_RATES) {
+      drug_update_rates = UPDATE_RATES[this.name];
+    } else {
+      drug_update_rates = UPDATE_RATES["Default"];
+    }
+
+    // Sort in case UPDATES_RATES is not declared properly
+    drug_update_rates.sort(function(a, b) {return b[0] - a[0]});
+
+    // Before expiration
+    if (this.expiresIn > 0) {
+      current_pair = drug_update_rates.find(elem => this.expiresIn > elem[0]);
+      return current_pair[1];
+    } else {
+      // After expiration
+      current_pair = drug_update_rates.find(elem => elem[0] < 0);
+      if (current_pair != undefined) {
+        return current_pair[1];
+      } else {
+        //if no update rate is given for after the expiration date, we suppose that the drug is not
+        // efficient anymore. Like Fervex.
+        return -this.expiresIn;
+      }
+    }
+
+  }
 }
 
 export class Pharmacy {
