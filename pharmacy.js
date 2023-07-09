@@ -85,7 +85,7 @@ export class Drug {
       } else {
         // if no update rate is given for after the expiration date, we suppose that the drug is not
         // efficient anymore. Like Fervex.
-        return -this.expiresIn;
+        return -this.benefit;
       }
     }
 
