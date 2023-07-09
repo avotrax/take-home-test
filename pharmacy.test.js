@@ -38,4 +38,5 @@ describe("Drug", () => {
   it("should not decrement expiresIn attribute for Magic Pill", () => {
     expect(new Drug("Magic Pill", 42, 1).updateExpiresInValue()).toEqual(42);
   });
+  
 });
